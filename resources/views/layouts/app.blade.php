@@ -32,7 +32,22 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+
+
+
                     <ul class="navbar-nav mr-auto">
+
+                        <li class="nav-item">
+                            <a href="{{route('posts.index')}}" class="nav-link">
+                                Посты
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{route('about')}}" class="nav-link">
+                                О сайте
+                            </a>
+                        </li>
 
                     </ul>
 
@@ -55,6 +70,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                    <a href="{{ route('categories.index', auth()->user()) }}" class="dropdown-item">
+                                        Категории
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -72,7 +92,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 container">
             @yield('content')
         </main>
     </div>

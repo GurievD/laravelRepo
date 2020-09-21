@@ -1,3 +1,5 @@
+import bsCustomFileInput from "bs-custom-file-input";
+
 window._ = require('lodash');
 
 /**
@@ -11,6 +13,10 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
+
+    $(document).ready(() => {
+        bsCustomFileInput.init();
+    })
 } catch (e) {}
 
 /**
