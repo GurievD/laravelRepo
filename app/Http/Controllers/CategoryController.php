@@ -27,12 +27,20 @@ class CategoryController extends Controller
 
     public function store()
     {
+
         $this->authorize('create', Category::class);
         $data = $this->validated();
+
+
 
         /** @var User $user */
         $user = auth()->user();
         $user->categories()->create($data);
+
+        $categories = $user->categories()->get();
+
+        if(isset($data['active']))
+            return view('categories.lorem', ['categories' => $categories]);
 
         return redirect()->route('categories.index', $user);
     }
@@ -59,6 +67,10 @@ class CategoryController extends Controller
 
         $data = $this->validated();
         $category->update($data);
+
+        if(isset($data['active']))
+            return view('categories.lorem');
+
         return redirect()->route('categories.show', $category);
     }
 
@@ -74,7 +86,9 @@ class CategoryController extends Controller
 
     protected function validated() {
         return request()->validate([
-            'name' => 'required|string|min:5'
+            'name' => 'required|string|min:5',
+            'active' => 'boolean'
+
         ]);
     }
 

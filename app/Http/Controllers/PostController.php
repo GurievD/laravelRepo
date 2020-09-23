@@ -23,6 +23,8 @@ class PostController extends Controller
     {
         $this->authorize('create', Post::class);
 
+
+
         return view('posts.form', [
             'categories' => auth()->user()->categories
         ]);
@@ -35,6 +37,7 @@ class PostController extends Controller
         $post = auth()->user()
             ->posts()
             ->create($request->validated());
+
 
         return redirect()->route('posts.show', $post);
     }

@@ -28,7 +28,22 @@
                     @enderror
                 </div>
 
-                <button class="btn btn-primary">Добавить</button>
+                <div class="form-group">
+                    <input id="active" name="active" type="checkbox" value="1" >
+
+                    <label for="active">active</label>
+
+
+                    @error('active')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+
+
+
+                <button class="btn btn-primary">{{ $category ? 'Обновить' : 'Добавить' }}</button>
             </form>
         </div>
 
