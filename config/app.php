@@ -2,6 +2,13 @@
 
 return [
 
+    //Список админов
+
+    'admin_list' => [
+        1 => 'ewfefw.wefew@mail.ru',
+        2 => 'vasya@pupkin@gmail.com'
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -233,7 +240,5 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
-    ],
-
+    ]
 ];

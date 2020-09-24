@@ -49,6 +49,14 @@
                             </a>
                         </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('movies.index') }}">Фильмы</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('actors.index') }}">Актёры</a>
+                        </li>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -74,6 +82,17 @@
                                     <a href="{{ route('categories.index', auth()->user()) }}" class="dropdown-item">
                                         Категории
                                     </a>
+
+                                    @if(isset(config('app.admins')[auth()->user()->id]))
+                                        @if(config('app.admins')[auth()->user()->id] == auth()->user()->email)
+                                            <a class="dropdown-item" href="{{ route('countries.index') }}">
+                                                Список стран
+                                            </a>
+                                            <a class="dropdown-item" href="{{ route('genres.index') }}">
+                                                Список жанров
+                                            </a>
+                                        @endif
+                                    @endif
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
