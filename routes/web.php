@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\AddCommentController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\GreetingController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Auth;
@@ -26,13 +29,33 @@ Route::middleware('auth')
 
         Route::resource('posts', PostController::class)
             ->except('index', 'show');
+
+        Route::put('posts/{post}/like', [LikeController::class, 'toggle'])
+            ->name('likes.toggle');
+
+        Route::post('post/{post}/comment',[CommentController::class, 'store'])
+            ->name('comment.create');
+
+        Route::post('/comment/delete/{comment}',[CommentController::class, 'destroy'])
+            ->name('comment.delete');
+        
     });
+
+
 
 Route::get('users/{user}/categories', [CategoryController::class, 'index'])
     ->name('categories.index');
 
 Route::resource('posts', PostController::class)
     ->only('index', 'show');
+
+
+
+Route::get('users/{user}/posts', [PostController::class, 'byUser'])
+    ->name('user.posts');
+
+Route::get('categories/{category}/posts', [PostController::class, 'byCategory'])
+    ->name('category.posts');
 
 
 //Route::get('categories/create', [CategoryController::class, 'create'])

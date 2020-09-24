@@ -26,13 +26,28 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function categories()
+    protected static function boot()
     {
+        parent::boot();
+        static::deleting(function (User $user) {
+            foreach ($user->posts as $post)
+                $post->deleteImage();
+        });
+    }
+
+    function categories() {
         return $this->hasMany(Category::class);
     }
 
-    public function posts()
-    {
+    function posts() {
         return $this->hasMany(Post::class);
+    }
+
+    function likes() {
+        return $this->hasMany(Like::class);
+    }
+
+    function post_comments(){
+        return $this->hasMany(Comment::class);
     }
 }

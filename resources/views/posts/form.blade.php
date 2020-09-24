@@ -13,7 +13,7 @@ $post = $post ?? null;
         <div class="col-md-5">
 
             <form action="{{ $post ? route('posts.update', $post) : route('posts.store') }}"
-                  class="card card-body" method="post">
+                  class="card card-body" method="post" enctype="multipart/form-data">
                 @csrf @if($post) @method('put') @endif
 
                 <div class="form-group">
@@ -30,6 +30,21 @@ $post = $post ?? null;
                         {{ $message }}
                     </div>
                     @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="image">Изображение</label>
+
+                    <div class="custom-file">
+                        <input accept=".jpg,.jpeg,.png,.webp,.gif,.bmp" type="file" class="custom-file-input @error('image') is-invalid @enderror" id="image" name="image">
+                        <label class="custom-file-label" for="image">Выберите изображение...</label>
+                        @error('image')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
                 </div>
 
                 <div class="form-group">
