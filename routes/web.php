@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\AddCommentController;
+use App\Http\Controllers\ActorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\GreetingController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\MovieController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Auth;
@@ -38,7 +40,13 @@ Route::middleware('auth')
 
         Route::post('/comment/delete/{comment}',[CommentController::class, 'destroy'])
             ->name('comment.delete');
-        
+
+        Route::resource('actors', ActorController::class)->except('index', 'show');
+
+        Route::resource('genres', GenreController::class);
+
+        Route::resource('movies', MovieController::class)->except('index', 'show');
+
     });
 
 
@@ -56,6 +64,15 @@ Route::get('users/{user}/posts', [PostController::class, 'byUser'])
 
 Route::get('categories/{category}/posts', [PostController::class, 'byCategory'])
     ->name('category.posts');
+
+
+Route::resource('actors', ActorController::class)
+    ->only('index', 'show');
+
+Route::get('genres/{genre}/movies', [MovieController::class, 'byGenre'])->name('genre.movies');
+
+Route::resource('movies', MovieController::class)
+    ->only('index', 'show');
 
 
 //Route::get('categories/create', [CategoryController::class, 'create'])
