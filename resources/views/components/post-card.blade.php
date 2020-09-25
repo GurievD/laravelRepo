@@ -23,7 +23,7 @@
     </div>
 
     @if($post->image_path)
-        <img src="{{ \Illuminate\Support\Facades\Storage::url($post->image_path) }}" alt="{{ $post->title }}" class="img-fluid my-3 rounded">
+        <img src="{{ \Illuminate\Support\Facades\Storage::url($post->image_path) }}" class="img-fluid my-3 rounded">
     @else
         <hr style="border-style: dashed;" />
     @endif
