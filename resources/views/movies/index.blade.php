@@ -17,7 +17,7 @@ $isAdmin = $isAdmin ?? null;
             Фильмы
         </h1>
 
-        @if($admin)
+        @if($admin ?? '')
             <a href="{{ route('movies.create') }}" class="ml-auto btn btn-success">
                 Добавить фильм
             </a>
