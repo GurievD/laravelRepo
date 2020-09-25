@@ -2,13 +2,6 @@
 
 return [
 
-    //Список админов
-
-    'admin_list' => [
-        1 => 'ewfefw.wefew@mail.ru',
-        2 => 'vasya@pupkin@gmail.com'
-    ],
-
     /*
     |--------------------------------------------------------------------------
     | Application Name

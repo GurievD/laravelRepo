@@ -6,7 +6,6 @@
         </a>
 
         <div class="d-flex align-items-center justify-content-end">
-            @if($admin)
                 <a href="{{ route('actors.edit', $actor) }}" class="mt-5 btn btn-warning btn-sm">
                     Редактировать актёра
                 </a>
@@ -17,7 +16,6 @@
                         Удалить актёра
                     </button>
                 </form>
-            @endif
         </div>
     </div>
 

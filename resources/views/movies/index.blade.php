@@ -1,12 +1,3 @@
-<?php
-if(isset(config('app.admins')[auth()->user()->id])) {
-    if(config('app.admins')[auth()->user()->id] == auth()->user()->email) {
-        $isAdmin = true;
-    }
-}
-$isAdmin = $isAdmin ?? null;
-?>
-
 @extends('layouts.app')
 
 @section('content')
@@ -17,12 +8,9 @@ $isAdmin = $isAdmin ?? null;
             Фильмы
         </h1>
 
-        @if($admin ?? '')
-            <a href="{{ route('movies.create') }}" class="ml-auto btn btn-success">
-                Добавить фильм
-            </a>
-        @endif
-
+        <a href="{{ route('movies.create') }}" class="ml-auto btn btn-success">
+            Добавить фильм
+        </a>
     </div>
 
     <div class="row">

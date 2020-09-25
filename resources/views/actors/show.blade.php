@@ -1,7 +1,3 @@
-<?php
-$admin = $admin ?? null;
-?>
-
 @extends('layouts.app')
 
 @section('content')
@@ -11,14 +7,12 @@ $admin = $admin ?? null;
 
         <div class="ml-auto">
             <div class="d-flex align-items-center justify-content-end">
-                @if($admin)
                     <a href="{{ route('actors.edit', $actor) }}" class="btn btn-warning">Редактировать актёра</a>
                     <form action="{{ route('actors.destroy', $actor) }}" method="post">
 
                         @csrf @method('delete')
                         <button class="btn btn-danger">Удалить актёра</button>
                     </form>
-                @endif
             </div>
         </div>
     </div>

@@ -1,12 +1,3 @@
-<?php
-if(isset(config('app.admins')[auth()->user()->id])) {
-    if(config('app.admins')[auth()->user()->id] == auth()->user()->email) {
-        $isAdmin = true;
-    }
-}
-$isAdmin = $isAdmin ?? null;
-?>
-
 @extends('layouts.app')
 
 @section('content')
@@ -16,13 +7,11 @@ $isAdmin = $isAdmin ?? null;
 
         <div class="ml-auto">
             <div class="d-flex align-items-center justify-content-end">
-                @if($admin)
-                    <a href="{{ route('movies.edit', $movie) }}" class="btn btn-warning">Редактировать</a>
+                <a href="{{ route('movies.edit', $movie) }}" class="btn btn-warning">Редактировать</a>
                     <form action="{{ route('movies.destroy', $movie) }}" method="post">
                         @csrf @method('delete')
                         <button class="btn btn-danger">Удалить</button>
                     </form>
-                @endif
             </div>
         </div>
     </div>

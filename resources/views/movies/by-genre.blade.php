@@ -1,12 +1,3 @@
-<?php
-if(isset(config('app.admins')[auth()->user()->id])) {
-    if(config('app.admins')[auth()->user()->id] == auth()->user()->email) {
-        $isAdmin = true;
-    }
-}
-$isAdmin = $isAdmin ?? null;
-?>
-
 @extends('layouts.app')
 
 @section('content')

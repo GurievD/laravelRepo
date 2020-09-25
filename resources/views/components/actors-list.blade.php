@@ -1,6 +1,6 @@
 @if($actors->isNotEmpty())
 
-    @foreach($actors->reverse() as $actor)
+    @foreach($actors as $actor)
         @include('components.actor-card')
     @endforeach
 

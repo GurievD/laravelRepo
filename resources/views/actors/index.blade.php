@@ -1,7 +1,3 @@
-<?php
-$admin = $admin ?? null;
-?>
-
 @extends('layouts.app')
 
 @section('content')
@@ -12,12 +8,9 @@ $admin = $admin ?? null;
             Список актёров
         </h1>
 
-        @if($admin)
-            <a href="{{ route('actors.create') }}" class="ml-auto btn btn-info">
+        <a href="{{ route('actors.create') }}" class="ml-auto btn btn-info">
                 Добавить нового актёра
-            </a>
-        @endif
-
+        </a>
     </div>
 
     <div class="row">
