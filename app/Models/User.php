@@ -47,7 +47,23 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
 
+    function movie_likes() {
+        return $this->hasMany(MovieLike::class);
+    }
+
+    function actor_likes() {
+        return $this->hasMany(ActorLike::class);
+    }
+
     function post_comments(){
         return $this->hasMany(Comment::class);
+    }
+
+    function movie_comments(){
+        return $this->hasMany(MovieComment::class);
+    }
+
+    function actor_comments(){
+        return $this->hasMany(ActorComment::class);
     }
 }

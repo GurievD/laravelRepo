@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Index</h1>
-
     <div class="d-flex align-items-center mb-3">
         <h1 class="h3">
             Категории {{$user->name}}

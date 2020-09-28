@@ -21,11 +21,14 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
+                <img src="{{ Storage::url('public/images/moviebase.png') }}" class="mr-1">
+
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    MovieBase
                 </a>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -37,11 +40,11 @@
 
                     <ul class="navbar-nav mr-auto">
 
-                        <li class="nav-item">
-                            <a href="{{route('posts.index')}}" class="nav-link">
-                                Посты
-                            </a>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="{{route('posts.index')}}" class="nav-link">--}}
+{{--                                Посты--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
 
                         <li class="nav-item">
                             <a href="{{route('about')}}" class="nav-link">
@@ -49,7 +52,39 @@
                             </a>
                         </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link left-menu-link" href="{{ route('actors.index') }}">
+                                Актёры
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link left-menu-link" href="{{ route('movies.index') }}">
+                                Фильмы
+                            </a>
+                        </li>
+
+
+
+                        @if (Route::currentRouteName() == 'movie.search' || Route::currentRouteName() == 'movies.index')
+                            <form class="form-inline ml-3 my-lg-0" action="{{url('movies_search')}}" method="get">
+                                <div class="form-group">
+                                    <input type="search" name="query" class="form-control mr-sm-2" placeholder="Поиск...">
+                                    <button type="submit" class="btn btn-primary my-2 my-sm-0">Поиск</button>
+                                </div>
+                            </form>
+                        @elseif (Route::currentRouteName() == 'actor.search' || Route::currentRouteName() == 'actors.index')
+                            <form class="form-inline ml-3 my-lg-0" action="{{url('actors_search')}}" method="get">
+                                <div class="form-group">
+                                    <input type="search" name="query" class="form-control mr-sm-2" placeholder="Поиск...">
+                                    <button type="submit" class="btn btn-primary my-2 my-sm-0">Поиск</button>
+                                </div>
+                            </form>
+                        @endif
+
                     </ul>
+
+
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -71,9 +106,20 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                    <a href="{{ route('categories.index', auth()->user()) }}" class="dropdown-item">
-                                        Категории
-                                    </a>
+
+
+                                    @if(isset(config('admin.admin_list')[ Auth::user()->id]))
+                                        @if(config('admin.admin_list')[ Auth::user()->id] ==  Auth::user()->email)
+
+                                            <a href="{{ route('categories.index',  Auth::user()) }}" class="dropdown-item">
+                                                Категории
+                                            </a>
+
+                                            <a class="dropdown-item" href="{{ route('genres.index') }}">
+                                                Жанры
+                                            </a>
+                                        @endif
+                                    @endif
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

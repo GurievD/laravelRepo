@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Movie;
 use App\Models\Post;
 use Illuminate\Http\Request;
 

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class GreetingController extends Controller
 {
-    function hello($name) {
-        return view('greeting.hello', ['name' => $name]);
+    function hello() {
+        return view('greeting.hello');
     }
 }

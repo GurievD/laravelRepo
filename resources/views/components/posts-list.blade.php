@@ -4,8 +4,6 @@
         @include('components.post-card')
     @endforeach
 
-    {{ $posts->links() }}
-
 @else
     <div class="alert alert-secondary">
         Постов нет :(

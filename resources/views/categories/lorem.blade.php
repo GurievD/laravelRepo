@@ -1,5 +1,5 @@
 <?php
-$category = $category ?? null;
+    $category = $category ?? null;
 ?>
 
 @extends('layouts.app')
